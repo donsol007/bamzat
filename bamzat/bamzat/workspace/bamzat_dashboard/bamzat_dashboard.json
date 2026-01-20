@@ -1,0 +1,70 @@
+{
+ "charts": [
+  {
+   "chart_name": "General Chart",
+   "label": "General Chart"
+  }
+ ],
+ "content": "[{\"id\":\"NHtCb7QHY9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Bamzat Dashboard</span>\",\"col\":12}},{\"id\":\"riqZHHLn4q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Company Registration\",\"col\":3}},{\"id\":\"2PtRaM5X-K\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Live Exchange Rate\",\"col\":3}},{\"id\":\"5HukEz_qhq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Branch Registration\",\"col\":3}},{\"id\":\"5RMRpZxmps\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Change Exchange Rate\",\"col\":3}},{\"id\":\"3-f_5y6uq-\",\"type\":\"chart\",\"data\":{\"chart_name\":\"General Chart\",\"col\":12}},{\"id\":\"V9r6ZLsXdS\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"debt notification\",\"col\":12}}]",
+ "creation": "2025-12-29 14:00:32.629434",
+ "custom_blocks": [
+  {
+   "custom_block_name": "debt notification",
+   "label": "debt notification"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "image",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Bamzat Dashboard",
+ "links": [],
+ "modified": "2026-01-18 08:58:12.370754",
+ "modified_by": "Administrator",
+ "module": "Bamzat",
+ "name": "Bamzat Dashboard",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Change Exchange Rate",
+   "link_to": "Exchange Rate",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Live Exchange Rate",
+   "link_to": "live-currency-rate",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Company Registration",
+   "link_to": "Company Registration",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Branch Registration",
+   "link_to": "Branch Registration",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Bamzat Dashboard"
+}

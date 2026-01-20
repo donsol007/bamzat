@@ -24,9 +24,12 @@ app_license = "mit"
 # Includes in <head>
 # ------------------
 
+#web_include_css = "/assets/bamzat/css/login.css"
+#web_include_js = "/assets/bamzat/js/login.js"
+
 # include js, css files in header of desk.html
-# app_include_css = "/assets/bamzat/css/bamzat.css"
-# app_include_js = "/assets/bamzat/js/bamzat.js"
+app_include_css = "/assets/bamzat/css/bamzat.css"
+app_include_js = "/assets/bamzat/js/bamzat.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/bamzat/css/bamzat.css"
@@ -47,6 +50,7 @@ app_license = "mit"
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
 
 # Svg Icons
 # ------------------

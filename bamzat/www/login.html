@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="/assets/bamzat/images/bamzat_favicon.png" type="image/x-icon">
+	<title>Bamzat Login</title>
+
+    <style>
+        /* Same CSS as before – kept minimal for clarity */
+        body {
+            margin: 0; padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+        .login-card {
+            background: #0f1117;
+            border-radius: 16px;
+            padding: 32px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            border: 1px solid #2d3748;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        h2 { margin: 12px 0; font-size: 24px; }
+        .subtitle { color: #9ca3af; margin-bottom: 24px; font-size: 14px; }
+        input {
+            width: 100%; padding: 12px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            background: #1f2937;
+            color: white;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%; padding: 12px;
+            font-size:15px;
+            background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+            border: none; border-radius: 8px;
+            color: white; font-weight: bold; cursor: pointer;
+        }
+        a { color: #60a5fa; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div style="font-size:28px"><img style="width:20%;height:20%" src="/assets/bamzat/images/bamzat_logo_1.png" alt="Bamzat Logo"/></div>
+        <h2>Bamzat Login</h2>
+        <p class="subtitle">Connect to your Bamzat TMS workspace</p>
+
+        <form id="login-form">
+            <input type="text" id="email" placeholder="Email Address" required autocomplete="username">
+            <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+			
+			 <label style="display:flex;justify-content:space-between;align-items:center;margin:12px 0;font-size:14px">
+                <span><input type="checkbox" style="display:none;" id="remember_me"> </span>
+                <a href="/forgot">Forget Password</a>
+            </label>
+            <button type="submit">Login</button>
+        </form>
+
+        
+    </div>
+
+    <script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember_me').checked;
+
+    const btn = e.target.querySelector('button');
+    const originalText = btn.textContent;
+
+    // Loading state
+    btn.textContent = 'Verifying...';
+    btn.disabled = true;
+
+    try {
+        const res = await fetch('/api/method/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Frappe-CSRF-Token': frappe.csrf_token || ''
+            },
+            body: new URLSearchParams({
+                usr: email,
+                pwd: password,
+                device: remember ? 'desktop' : 'mobile'
+            }),
+            credentials: 'same-origin'
+        });
+
+        const data = await res.json();
+
+        // ✅ SUCCESS
+        if (res.ok) {
+            window.location.href = '/app';
+            return;
+        }
+
+        // ❌ INVALID PASSWORD / USER
+        btn.textContent = 'Invalid Password, Try Again';
+        btn.disabled = false;
+
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            btn.textContent = originalText;
+        }, 2000);
+
+    } catch (err) {
+        console.error(err);
+        btn.textContent = 'Network Error';
+        btn.disabled = false;
+
+        setTimeout(() => {
+            btn.textContent = originalText;
+        }, 2000);
+    }
+});
+
+// Load CSRF token
+if (!window.frappe) window.frappe = {};
+fetch('/api/method/frappe.core.doctype.user.user.get_csrf_token')
+    .then(r => r.text())
+    .then(token => {
+        frappe.csrf_token = token;
+    })
+    .catch(() => {});
+</script>
+
+</body>
+</html>

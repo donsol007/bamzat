@@ -1,0 +1,185 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:INV-{####}",
+ "creation": "2025-12-23 21:45:55.732135",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_details_section",
+  "branch",
+  "currency_pair",
+  "rate",
+  "amount",
+  "amount_to_receive",
+  "transaction_date",
+  "customer_name",
+  "column_break_cpst",
+  "account_number",
+  "bank_name",
+  "payment_mode",
+  "sender_name",
+  "sender_phone_no",
+  "payment_confirmation",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "allow_on_submit": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Account Number",
+   "length": 15,
+   "reqd": 1
+  },
+  {
+   "fieldname": "transaction_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction Details"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "currency_pair",
+   "fieldtype": "Link",
+   "label": "Currency Pair",
+   "options": "Exchange Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Exchange Transaction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fetch_from": "currency_pair.rate",
+   "fieldname": "rate",
+   "fieldtype": "Data",
+   "label": "Rate",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "amount_to_receive",
+   "fieldtype": "Data",
+   "label": "Amount to Receive",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "amount",
+   "fieldtype": "Data",
+   "label": "Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cpst",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "payment_mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Mode",
+   "options": "Online\nCash",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sender_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sender Name",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "payment_confirmation",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Confirmation",
+   "options": "Credit\nPaid",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Now",
+   "fieldname": "transaction_date",
+   "fieldtype": "Datetime",
+   "label": "Transaction Date",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Bank Name",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sender_phone_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sender Phone No.",
+   "length": 11,
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "link_filters": "[]",
+   "options": "Branch Registration",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-12-30 02:58:43.739515",
+ "modified_by": "Administrator",
+ "module": "Bamzat",
+ "name": "Exchange Transaction",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
