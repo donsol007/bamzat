@@ -7,22 +7,34 @@
 // 	},
 // });
 frappe.ui.form.on('Exchange Transaction', {
-    onload: function(frm) {
-        console.log(frappe.session.user);
-        frm.set_query('branch', function() {
-            return {
-                filters: {
-                    user_in_charge: frappe.session.user
-                }
-            };
-        });
-    }
-});
-
-frappe.ui.form.on('Exchange Transaction', {
     refresh(frm) {
         // Make amount_to_pay read-only
         frm.set_df_property('amount_to_receive', 'read_only', 1);
+    },
+
+    // NEW: Auto-fetch Branch logic
+    onload(frm) {
+        // Only run this for new documents
+        if (frm.is_new()) {
+            frappe.call({
+                method: "frappe.client.get_value",
+                args: {
+                    doctype: "Branch Registration",
+                    filters: {
+                        // Filter where assign_to_user matches the logged-in user's email
+                        "user_in_charge": frappe.session.user
+                    },
+                    // Fetch the 'name' (ID) to link to the Branch field
+                    fieldname: "name"
+                },
+                callback: function(r) {
+                    // If a branch is found, set it
+                    if (r.message) {
+                        frm.set_value('branch', r.message.name);
+                    }
+                }
+            });
+        }
     },
 
     rate(frm) {
@@ -31,9 +43,9 @@ frappe.ui.form.on('Exchange Transaction', {
     amount(frm) {
         calculate_amount_to_receive(frm);
     },
-     currency_pair(frm) {
+    currency_pair(frm) {
         update_amount_label(frm);
-    }
+    },
 });
 
 function calculate_amount_to_receive(frm) {
