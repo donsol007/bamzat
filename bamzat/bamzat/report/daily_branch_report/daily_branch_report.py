@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.utils import today, flt
+from datetime import datetime
 
 def execute(filters=None):
     columns = get_columns()
@@ -54,14 +55,16 @@ def get_columns():
     ]
 
 def get_data(filters):
-
+    converted_date = datetime.strptime(today(), "%Y-%m-%d"
+    ).strftime("%d-%m-%Y %H:%M:%S")
     conditions = {
-        "transaction_date": today()
+        "transaction_date": converted_date
     }
 
     if filters.get("branch"):
         conditions["branch"] = filters.get("branch")
 
+    print(conditions)
     data = frappe.get_all(
         "Exchange Transaction",
         filters=conditions,
