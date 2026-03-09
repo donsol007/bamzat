@@ -1,0 +1,28 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-03-09 12:40:40.830018",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-03-09 12:40:40.830018",
+ "modified_by": "Administrator",
+ "module": "Bamzat",
+ "name": "Branch Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Exchange Transaction",
+ "report_name": "Branch Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}
