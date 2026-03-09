@@ -56,7 +56,7 @@ def get_columns():
 
 def get_data(filters):
     converted_date = datetime.strptime(today(), "%Y-%m-%d"
-    ).strftime("%d-%m-%Y %H:%M:%S")
+    ).strftime("%d-%m-%Y")
     conditions = {
         "transaction_date": converted_date
     }
