@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"NHtCb7QHY9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Bamzat Reports</span>\",\"col\":12}},{\"id\":\"4ar7iqZy99\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Branch Report\",\"col\":3}},{\"id\":\"bSkH9nemx9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Branch Report by Date\",\"col\":3}},{\"id\":\"ODt9yIQdgk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Report\",\"col\":3}},{\"id\":\"V9r6ZLsXdS\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"debt notification\",\"col\":12}}]",
+ "content": "[{\"id\":\"NHtCb7QHY9\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Bamzat Reports</span>\",\"col\":12}},{\"id\":\"4ar7iqZy99\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Branch Report\",\"col\":3}},{\"id\":\"bSkH9nemx9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Branch Report by Date\",\"col\":3}},{\"id\":\"ODt9yIQdgk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Report\",\"col\":3}},{\"id\":\"rwuoahxaka\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"V9r6ZLsXdS\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"debt notification\",\"col\":12}}]",
  "creation": "2026-03-08 10:50:13.044722",
  "custom_blocks": [
   {
@@ -18,7 +18,7 @@
  "is_hidden": 0,
  "label": "Reports",
  "links": [],
- "modified": "2026-03-09 16:25:08.553887",
+ "modified": "2026-03-09 16:41:21.185518",
  "modified_by": "Administrator",
  "module": "Bamzat",
  "name": "Reports",
