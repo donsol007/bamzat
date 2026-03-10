@@ -26,7 +26,7 @@ def get_columns():
         {
             "label": "Rate",
             "fieldname": "rate",
-            "fieldtype": "Float",
+            "fieldtype": "Data",
             "width": 120
         },
         {
