@@ -33,13 +33,13 @@ def get_columns():
         {
             "label": "Amount",
             "fieldname": "amount",
-            "fieldtype": "Currency",
+            "fieldtype": "Data",
             "width": 120
         },
         {
             "label": "Amount to Receive",
             "fieldname": "amount_to_receive",
-            "fieldtype": "Currency",
+            "fieldtype": "Data",
             "width": 150
         },
         {
