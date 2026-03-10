@@ -9,30 +9,23 @@
 
 frappe.query_reports["Bamzat General Report"] = {
     filters: [
-
-        {
-            "fieldname": "date_from",
-            "label": "Date From",
-            "fieldtype": "Date"
-        },
-        {
-            "fieldname": "date_to",
-            "label": "Date To",
-            "fieldtype": "Date"
-        },
-        {
-            fieldname: "branch",
-            label: "Branch",
-            fieldtype: "Link",
-            options: "Branch Registration"
-        },
-
+        
         {
             fieldname: "id",
             label: "Currency Pair",
             fieldtype: "Link",
-			options: "Exchange Rate"
+            options: "Exchange Rate",
+            placeholder: "Select Currency Pair"
+        },
+        {
+            fieldname: "from_date",
+            label: "From Date",
+            fieldtype: "Date"
+        },
+        {
+            fieldname: "to_date",
+            label: "To Date",
+            fieldtype: "Date"
         }
-
     ]
 };

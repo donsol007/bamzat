@@ -3,49 +3,47 @@
 
 # import frappe
 import frappe
-from frappe.utils import today, flt
+from frappe.utils import flt
 
 def execute(filters=None):
     columns = get_columns()
     data = get_data(filters)
-
-    summary = get_summary(data)
+    summary = get_summary(data, filters)
 
     return columns, data, None, None, summary
 
 
 def get_columns():
     return [
-        {
+         {
             "label": "Branch",
             "fieldname": "branch",
-            "fieldtype": "Link",
-            "options": "Branch Registration",
+            "fieldtype": "Data",
             "width": 150
         },
         {
             "label": "Currency Pair",
             "fieldname": "currency_pair",
             "fieldtype": "Data",
-            "width": 140
+            "width": 150
         },
         {
             "label": "Rate",
             "fieldname": "rate",
             "fieldtype": "Float",
-            "width": 110
+            "width": 120
         },
         {
             "label": "Amount",
             "fieldname": "amount",
             "fieldtype": "Currency",
-            "width": 130
+            "width": 120
         },
         {
             "label": "Amount to Receive",
             "fieldname": "amount_to_receive",
             "fieldtype": "Currency",
-            "width": 160
+            "width": 150
         },
         {
             "label": "Payment Mode",
@@ -61,27 +59,20 @@ def get_columns():
         }
     ]
 
-
 def get_data(filters):
+    # CHANGE: Check for both from_date and to_date
+    if not filters or not filters.get("from_date") or not filters.get("to_date"):
+        return []
 
-    conditions = []
+    # CHANGE: Use "between" for the date range query
+    conditions = {
+        "transaction_date": ["between", [filters.get("from_date"), filters.get("to_date")]]
+    }
 
-    # Date range filter
-    if filters.get("date_from") and filters.get("date_to"):
-        conditions.append(["transaction_date", ">=", filters.get("date_from")])
-        conditions.append(["transaction_date", "<=", filters.get("date_to")])
-    else:
-        # Default to today
-        conditions.append(["transaction_date", "=", today()])
-
-    # Branch filter
-    if filters.get("branch"):
-        conditions.append(["branch", "=", filters.get("branch")])
-
-    # Currency pair filter
+    
     if filters.get("id"):
-        conditions.append(["currency_pair", "=", filters.get("id")])
-
+        conditions["currency_pair"] = filters.get("id")
+    
     data = frappe.get_all(
         "Exchange Transaction",
         filters=conditions,
@@ -99,7 +90,10 @@ def get_data(filters):
 
     return data
 
-def get_summary(data):
+
+def get_summary(data, filters):
+    if not data:
+        return []
 
     total_amount = 0
     total_receive = 0
@@ -108,17 +102,36 @@ def get_summary(data):
         total_amount += flt(d.amount)
         total_receive += flt(d.amount_to_receive)
 
+    currency_from = ""
+    currency_to = ""
+
+    currency_pair = filters.get("id")
+
+    if currency_pair:
+        parts = currency_pair.split("-")
+        if len(parts) == 2:
+            currency_from = parts[0].strip()
+            currency_to = parts[1].strip()
+
+    # Format numbers with commas, no decimal points (e.g. 25,000)
+    formatted_amount = "{:,.0f}".format(total_amount)
+    formatted_receive = "{:,.0f}".format(total_receive)
+
+    # Create the display strings (e.g. NGN200,000)
+    amount_display = f"{currency_from}{formatted_amount}"
+    receive_display = f"{currency_to}{formatted_receive}"
+
     return [
         {
-            "value": total_amount,
+            "value": amount_display,
             "indicator": "Green",
-            "label": "Total Amount",
-            "datatype": "Currency"
+            "label": f"Total Amount Received in {currency_from}" if currency_from else "Total Amount Received",
+            "datatype": "Data" 
         },
         {
-            "value": total_receive,
+            "value": receive_display,
             "indicator": "Blue",
-            "label": "Total Amount to Receive",
-            "datatype": "Currency"
+            "label": f"Total Amount Payout in {currency_to}" if currency_to else "Total Amount Payout",
+            "datatype": "Data"
         }
     ]

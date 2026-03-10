@@ -13,7 +13,21 @@ frappe.query_reports["Daily Branch Report"] = {
             fieldname: "branch",
             label: "Branch",
             fieldtype: "Link",
-            options: "Branch Registration"
+            options: "Branch Registration",
+            placeholder: "Select Branch"
+        },
+        {
+            fieldname: "id",
+            label: "Currency Pair",
+            fieldtype: "Link",
+            options: "Exchange Rate",
+            placeholder: "Select Currency Pair"
+        },
+        {
+            fieldname: "transaction_date",
+            label: "Date",
+            fieldtype: "Date"
+            // Note: No "default" set here. This keeps it empty on load.
         }
     ]
 };
