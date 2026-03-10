@@ -56,21 +56,19 @@ def get_columns():
     ]
 
 def get_data(filters):
-    # CHANGE: Check for both from_date and to_date
+    
     if not filters or not filters.get("from_date") or not filters.get("to_date"):
         return []
-
-    # CHANGE: Use "between" for the date range query
-    conditions = {
-        "transaction_date": ["between", [filters.get("from_date"), filters.get("to_date")]]
-    }
+    
+    conditions = []
+    conditions.append(["transaction_date", ">=", filters.get("from_date")])
+    conditions.append(["transaction_date", "<=", filters.get("to_date")])
 
     if filters.get("branch"):
-        conditions["branch"] = filters.get("branch")
+        conditions.append(["branch", "=", filters.get("branch")])
     
     if filters.get("id"):
-        conditions["currency_pair"] = filters.get("id")
-    
+        conditions.append(["currency_pair", "=", filters.get("id")])    
     data = frappe.get_all(
         "Exchange Transaction",
         filters=conditions,

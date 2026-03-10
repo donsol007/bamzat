@@ -2,6 +2,9 @@
 # For license information, please see license.txt
 
 # import frappe
+# Copyright (c) 2026, Donsol and contributors
+# For license information, please see license.txt
+
 import frappe
 from frappe.utils import flt
 
@@ -15,12 +18,6 @@ def execute(filters=None):
 
 def get_columns():
     return [
-         {
-            "label": "Branch",
-            "fieldname": "branch",
-            "fieldtype": "Data",
-            "width": 150
-        },
         {
             "label": "Currency Pair",
             "fieldname": "currency_pair",
@@ -60,22 +57,23 @@ def get_columns():
     ]
 
 def get_data(filters):
-    # CHANGE: Check for both from_date and to_date
+    # Check for both from_date and to_date
     if not filters or not filters.get("from_date") or not filters.get("to_date"):
         return []
 
-    # CHANGE: Use "between" for the date range query
-    conditions = {
-        "transaction_date": ["between", [filters.get("from_date"), filters.get("to_date")]]
-    }
+    conditions = []
+    conditions.append(["transaction_date", ">=", filters.get("from_date")])
+    conditions.append(["transaction_date", "<=", filters.get("to_date")])
 
+    # if filters.get("branch"):
+    #     conditions.append(["branch", "=", filters.get("branch")])
     
     if filters.get("id"):
-        conditions["currency_pair"] = filters.get("id")
+        conditions.append(["currency_pair", "=", filters.get("id")])
     
     data = frappe.get_all(
         "Exchange Transaction",
-        filters=conditions,
+        filters=conditions, # Pass the list here
         fields=[
             "branch",
             "currency_pair",
@@ -113,11 +111,11 @@ def get_summary(data, filters):
             currency_from = parts[0].strip()
             currency_to = parts[1].strip()
 
-    # Format numbers with commas, no decimal points (e.g. 25,000)
+    # Format numbers with commas, no decimal points
     formatted_amount = "{:,.0f}".format(total_amount)
     formatted_receive = "{:,.0f}".format(total_receive)
 
-    # Create the display strings (e.g. NGN200,000)
+    # Combine Currency Code + Value
     amount_display = f"{currency_from}{formatted_amount}"
     receive_display = f"{currency_to}{formatted_receive}"
 
