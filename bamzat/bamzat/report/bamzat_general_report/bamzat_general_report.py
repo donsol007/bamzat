@@ -49,6 +49,12 @@ def get_columns():
             "width": 130
         },
         {
+            "label": "Transaction Fee",
+            "fieldname": "transaction_fee",
+            "fieldtype": "Data",
+            "width": 140
+        },
+        {
             "label": "Transaction Date",
             "fieldname": "transaction_date",
             "fieldtype": "Date",
@@ -81,6 +87,7 @@ def get_data(filters):
             "amount",
             "amount_to_receive",
             "payment_mode",
+            "transaction_fee",
             "transaction_date"
         ],
         order_by="transaction_date desc"
@@ -95,10 +102,12 @@ def get_summary(data, filters):
 
     total_amount = 0
     total_receive = 0
-
+    total_fee = 0
+    
     for d in data:
         total_amount += flt(d.amount)
         total_receive += flt(d.amount_to_receive)
+        total_fee +=flt(d.transaction_fee)
 
     currency_from = ""
     currency_to = ""
@@ -114,10 +123,12 @@ def get_summary(data, filters):
     # Format numbers with commas, no decimal points
     formatted_amount = "{:,.0f}".format(total_amount)
     formatted_receive = "{:,.0f}".format(total_receive)
+    formatted_fee = "{:,.0f}".format(total_fee)
+    
 
-    # Combine Currency Code + Value
     amount_display = f"{currency_from}{formatted_amount}"
     receive_display = f"{currency_to}{formatted_receive}"
+    total_fee_display =f"{currency_from}{formatted_fee}"
 
     return [
         {
@@ -131,5 +142,11 @@ def get_summary(data, filters):
             "indicator": "Blue",
             "label": f"Total Amount Payout in {currency_to}" if currency_to else "Total Amount Payout",
             "datatype": "Data"
+        },
+         {
+            "value": total_fee_display,
+            "indicator": "green",
+            "label": f"Total Transaction Fee {currency_from}",
+            "datatype": "Data" # Set to "Data" because value is now a string
         }
     ]

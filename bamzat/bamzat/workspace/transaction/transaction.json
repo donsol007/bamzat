@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"YpGCeLfign\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"b7abeqw4NZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exchange Currency\",\"col\":3}},{\"id\":\"dOs4X-ZF8U\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exchange Rate\",\"col\":3}},{\"id\":\"jq42kuRpAA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Make Transaction\",\"col\":3}},{\"id\":\"xBcNoz78jf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expenses\",\"col\":3}},{\"id\":\"oFB4l28FMU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"yJNNylguxk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Links and Reports</b></span>\",\"col\":12}},{\"id\":\"NMpIkExl3i\",\"type\":\"card\",\"data\":{\"card_name\":\"Currency and Rate\",\"col\":4}},{\"id\":\"jiXwSXiNWj\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}}]",
+ "content": "[{\"id\":\"YpGCeLfign\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"b7abeqw4NZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exchange Currency\",\"col\":3}},{\"id\":\"dOs4X-ZF8U\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Exchange Rate\",\"col\":3}},{\"id\":\"jq42kuRpAA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Make Transaction\",\"col\":3}},{\"id\":\"xBcNoz78jf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expenses\",\"col\":3}},{\"id\":\"oFB4l28FMU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"7JRmX-wdKP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Deposit\",\"col\":3}},{\"id\":\"yJNNylguxk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Links and Reports</b></span>\",\"col\":12}},{\"id\":\"NMpIkExl3i\",\"type\":\"card\",\"data\":{\"card_name\":\"Currency and Rate\",\"col\":4}},{\"id\":\"jiXwSXiNWj\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}}]",
  "creation": "2025-12-22 16:48:06.899759",
  "custom_blocks": [],
  "docstatus": 0,
@@ -150,7 +150,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-01-18 08:34:26.880596",
+ "modified": "2026-03-16 19:04:51.053770",
  "modified_by": "Administrator",
  "module": "Bamzat",
  "name": "Transaction",
@@ -163,6 +163,14 @@
  "roles": [],
  "sequence_id": 3.0,
  "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Deposit",
+   "link_to": "Deposit",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
   {
    "color": "Grey",
    "doc_view": "List",
